@@ -8,8 +8,15 @@ requisition_counter = 10000
 # Store all requisition objects
 requisitions = []
 
+# Maintainability improvement:
+# Using global variables works for this small program, but
+# keeping this data inside the class would make the program
+# easier to manage as it becomes larger.
 
-# RequisitionSystem class
+
+# Object-Oriented Programming:
+# The class groups the requisition data and related methods together.
+# This allows multiple requisition objects to use the same structure.
 class RequisitionSystem:
 
     # Initialise the information for a requisition
@@ -35,8 +42,10 @@ class RequisitionSystem:
 
         # Store the approval reference number
         self.approval_reference = "Not available"
-
-    # Method to collect staff information
+    # Modularity:
+    # This method has one main responsibility: collecting staff information.
+    # Separating this task into a method makes the program easier to understand
+    # and allows the method to be reused when creating requisitions.
     def staff_info(self):
 
         # Use the global requisition counter to generate a unique ID
@@ -88,7 +97,10 @@ class RequisitionSystem:
             # Ask the staff member to enter the item name
             item = input("Enter item name:")
 
-            # Ask the staff member to enter item price
+            # Input validation improvement:
+            # The price is converted directly to a float.
+            # If the user enters text instead of a number, the program will produce an error.
+            # A validation loop could be added to make the program more reliable.
             price = float(input("Enter item price: $"))
 
             # Add the item and its price to the requisition list
@@ -163,7 +175,9 @@ class RequisitionSystem:
                 # Keep requisition pending
                 self.status = "Pending"
 
-    # Method to display information for current requisition objects
+    # Readability:
+    # Clear method names and comments make it easier to understand
+    # what each part of the program is responsible for.
     def display_requisitions(self):
 
         # Display the date of the requisition
@@ -237,6 +251,11 @@ print("Printing Requisitions:")
 
 # Add a blank line to separate each requisition
 print()
+
+# DRY (Don't Repeat Yourself) improvement:
+# The code below is repeated for requisition1 to requisition5.
+# A loop could be used instead to reduce repetition and make the
+# program easier to extend if more requisitions are required.
 
 # Create new requisition object
 requisition1 = RequisitionSystem()
